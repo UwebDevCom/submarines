@@ -10,10 +10,21 @@
 </head>
 <body>
     <header>
-        <nav></nav>
+        <nav>
+            <img class="logo" src="./images/logo.png" alt="logo" />
+            <div class="tools">
+               <div class="game-results"> Results:
+                <span id=countOfSubmarines>0</span>
+               </div>
+                <button onclick="location.reload()" class="play-again"></button>
+            </div>
+        </nav>
     </header>
         <section class="game-board-container">
             <div class="game-board-inner">
+                <div tabindex="0" aria-labelledby="dialog1_label" role="dialog" class="win-pop">
+                    <p id="dialog1_label">you win</p>
+                </div>
             <div id="gameBoard">
             </div>
             <div class="border"></div>

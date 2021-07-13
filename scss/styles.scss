@@ -11,6 +11,7 @@ body {
     height: 100%;
     width: 100%;
     background: transparent radial-gradient(closest-side at 50% 50%, #0071BC 8%, #1B1464 100%) 0% 0% no-repeat padding-box;
+    overflow: hidden;
 }
 .game-board-container
 {
@@ -21,16 +22,57 @@ body {
     background-size: 150%;
     background-position: center center;
 }
+header
+{
+    border-radius: 30px;
+    box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.8) , 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 960px;
+    padding: 4px;
+    margin: 40px auto;
+    background-image: url('/images/menu.png');
+    background-size: contain;
+    nav {
+        display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    img.logo {
+        margin: 10px;
+        width: 140px;
+    }
+    .tools
+    {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 200px;
+    border-radius: 36px;
+    margin: 0 8px;
+    display: flex;
+    justify-content: space-between;
+        button {
+            cursor: pointer;
+            background-image: url('/images/play-again.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            padding: 7px;
+            background-color: transparent;
+            border: none;
+            background-size: contain;
+            vertical-align: middle;
+        }
+    }
+}
 .game-board-inner {
     position: relative;
     top: -130px;
     margin: auto;
-    padding: 32px 94px;
+    padding: 32px 174px;
     .border
 {
     position: absolute;
-    background-color: #5723CA;
-    height: 26px;
+    background-color: #9999;
+    height: 40px;
     width: 100%;
     bottom: 0;
     right: 0;
@@ -38,31 +80,140 @@ body {
 }
 }
 
-#gameBoard{
-    // border-bottom: 40px solid #1b1464;
-    // border-right: 3px solid #1b1464;
-    // border-left: 3px solid #1b1464;
-   
-    box-shadow: 0px 16px 15px rgb(0 0 0 / 30%);
+#gameBoard{   
+    filter:drop-shadow(32px 131px 28px rgba(0, 0, 0, 0.5));
     transform:
-    perspective(300px)
-    rotateX(50deg)
-    rotateY(0)
-    rotateZ(0);
-  box-shadow: 24px 16px 64px 0 rgba(0, 0, 0, 0.08);
+    perspective(500px) rotateX(55deg) rotateY(0) rotateZ(0);
+  box-shadow: 24px 16px 64px 0 rgba(0, 0, 0, 0.2);
   border-radius: 2px;
+  transition: all .1s;
 button {
-    background: #33C9FF;
-    background: -webkit-linear-gradient(top left, #33C9FF, #5723CA);
-    background: -moz-linear-gradient(top left, #33C9FF, #5723CA);
-    background: linear-gradient(to bottom right, #33C9FF, #5723CA);
-    border: none;
+    cursor: pointer;
+    vertical-align: middle;
+    &.yes {
+        position: relative;
+        &::after{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            content: '';
+            background-image: url('/images/logo-icon.png');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 50%;
+            transform: perspective(300px) rotateX(50deg) rotateY(0) rotateZ(0);
+        }
+    }
+    border: 1px solid rgba(255,255,255,0.5);
     width: 50px;
     height: 50px;
     color: #fff;
+    transition: all .3s;
+    background-color: rgba(0, 0, 0, 0.6);
     &:hover{
-        background: #0071BC;
+        background: rgba(255,255,255,0.3);
     }
 }
 
+.busmarine-not-found {
+    background: #EE4D32;
+    background: -webkit-linear-gradient(top left, #EE4D32, #F6FF3A);
+    background: -moz-linear-gradient(top left, #EE4D32, #F6FF3A);
+    background: linear-gradient(to bottom right, #EE4D32, #F6FF3A);
+    &:hover{
+        background: #EE4D32;
+    background: -webkit-linear-gradient(top left, #EE4D32, #F6FF3A);
+    background: -moz-linear-gradient(top left, #EE4D32, #F6FF3A);
+    background: linear-gradient(to bottom right, #EE4D32, #F6FF3A);
+    }
 }
+
+.busmarine-found {
+    background: #0BC16D;
+            background: -webkit-linear-gradient(top left, #0BC16D, #3AF4FF);
+            background: -moz-linear-gradient(top left, #0BC16D, #3AF4FF);
+            background: linear-gradient(to bottom right, #0BC16D, #3AF4FF);
+            &:hover{
+                background: #0BC16D;
+                background: -webkit-linear-gradient(top left, #0BC16D, #3AF4FF);
+                background: -moz-linear-gradient(top left, #0BC16D, #3AF4FF);
+                background: linear-gradient(to bottom right, #0BC16D, #3AF4FF);
+            }
+}
+&.finish-the-game
+{
+    transform:
+    perspective(0) rotateX(0) rotateY(0) rotateZ(0);
+  box-shadow: 24px 16px 64px 0 rgba(0, 0, 0, 0.2); 
+  button{
+    border: none;
+
+    background-color: #0071BC;
+    &.busmarine-not-found , &.busmarine-found
+    {
+        background : #0071BC;
+        
+    }
+    &::after{
+        content: none;
+    }
+  }
+}
+}
+.game-results
+{
+    color: #fff;
+}
+
+.axis-x-container
+{
+    position: absolute;
+    color: rgba(255, 255, 255, 0.5);
+    top: 68px;
+    left: 110px;
+    font-family: sans-serif;
+    transform: perspective(280px) rotateX(35deg) rotateY(0) rotateZ(34deg);
+    span{
+        display: block;
+    margin: 18px 0;
+    transform: rotateZ(53deg) rotateY(64deg) skewY(24deg);
+    font-size: 23px;
+    }
+}
+.axis-y-container
+    {
+    position: absolute;
+    color: #fff;
+    top: 145px;
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    right: 0;
+    width: 324px;
+    margin: 0 auto;
+    font-size: 12px;
+    font-family: sans-serif;
+    display: none;
+    }
+
+    .win-pop
+    {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    color: #fff;
+    background-color: #0071BC;
+    font-family: sans-serif;
+    font-size: 24px;
+    padding: 20px;
+    &+{
+      button {
+          cursor: auto;
+      }  
+    }
+    }
